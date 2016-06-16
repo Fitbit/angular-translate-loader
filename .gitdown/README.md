@@ -7,7 +7,7 @@
 
 # {"gitdown": "gitinfo", "name": "name"}
 
-`*.properties` loader for webpack
+`angular-translate` loader for webpack
 
 ## Usage
 
@@ -24,3 +24,5 @@
 ```
 
 ## Options
+
+TODO
