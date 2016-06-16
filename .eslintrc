@@ -1,0 +1,13 @@
+{
+  "extends": [
+    "mdreizin/base",
+    "mdreizin/node-es6",
+    "mdreizin/babel"
+  ],
+  "rules": {
+    "valid-jsdoc": ["error", {
+      "requireParamDescription": false,
+      "requireReturnDescription": false
+    }]
+  }
+}
