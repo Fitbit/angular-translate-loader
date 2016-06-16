@@ -12,7 +12,7 @@
 <h2 id="angular-translate-loader-usage">Usage</h2>
 
 ```javascript
-var translations = require('!json!angular-translate!./file.json');
+var translations = require('!json!angular-translate?module=translations!./file.json');
 
 console.log(translations);
 
