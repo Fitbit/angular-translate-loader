@@ -22,8 +22,8 @@ import loaderUtils from 'loader-utils';
  */
 const DEFAULT_OPTIONS = {
     module: 'translations',
-    prefix: '',
-    namespaces: '/',
+    namespaces: '',
+    sep: '/',
     localeInterpolate: /[a-z]{2}_[A-Z]{2}/,
     defaultLocale: 'en_US'
 };
@@ -44,7 +44,7 @@ const MODULE_EXPORTS = /module\.exports\s?=\s?({[\s\S\n\t]+?});?/;
  * @private
  * @type {Object<String,Function>}
  */
-const PREFIX_INTERPOLATIONS = {
+const NAME_INTERPOLATIONS = {
     /**
      * @private
      * @param {String} context
@@ -85,32 +85,49 @@ const extractLocale = (loaderContext, options) => {
 
 /**
  * @private
+ * @param {String} name
  * @param {*} loaderContext
  * @param {*} content
  * @param {Object} options
  * @returns {String}
  */
-const interpolatePrefix = (loaderContext, content, options) => {
-    let prefix = options.prefix,
-        namespaces = options.namespaces;
+const interpolateName = (name, loaderContext, content, options) => {
+    const context = options.context || loaderContext.options.context || './';
 
-    if (!isEmpty(prefix)) {
-        const context = options.context || loaderContext.options.context || './';
+    name = loaderUtils.interpolateName(loaderContext, name, {
+        context: context,
+        content: isObject(content) ? JSON.stringify(content) : content,
+        regExp: options.regExp
+    });
 
-        prefix = loaderUtils.interpolateName(loaderContext, prefix, {
-            context: context,
-            content: isObject(content) ? JSON.stringify(content) : content,
-            regExp: options.regExp
-        });
-
-        for (const [key, value] of Object.entries(PREFIX_INTERPOLATIONS)) {
-            prefix = prefix.replace(new RegExp(escapeRegExp(key)), value(context, loaderContext.resourcePath));
-        }
-
-        prefix = prefix.split(sep).join(namespaces) + namespaces;
+    for (const [key, value] of Object.entries(NAME_INTERPOLATIONS)) {
+        name = name.replace(new RegExp(escapeRegExp(key), 'g'), value(context, loaderContext.resourcePath));
     }
 
-    return prefix;
+    return name;
+};
+
+/**
+ * @private
+ * @param {*} loaderContext
+ * @param {*} content
+ * @param {Object} options
+ * @returns {String}
+ */
+const interpolateNamespaces = (loaderContext, content, options) => {
+    let namespaces = options.namespaces;
+
+    if (Array.isArray(namespaces)) {
+        namespaces = namespaces.join(options.sep);
+    }
+
+    if (!isEmpty(namespaces)) {
+        namespaces = interpolateName(namespaces, loaderContext, content, options);
+
+        namespaces = namespaces.split(sep).join(options.sep) + options.sep;
+    }
+
+    return namespaces;
 };
 
 /**
@@ -140,9 +157,9 @@ const extractTranslations = (loaderContext, content, options) => {
         translations = {};
     }
 
-    const prefix = interpolatePrefix(loaderContext, translations, options);
+    const namespaces = interpolateNamespaces(loaderContext, translations, options);
 
-    return mapKeys(translations, (value, key) => prefix + key);
+    return mapKeys(translations, (value, key) => namespaces + key);
 };
 
 /**

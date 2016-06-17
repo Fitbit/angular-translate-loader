@@ -26,4 +26,10 @@
 
 ## Options
 
-TODO
+| Name | Type | Default Value | Description |
+|:------------------|:--------------------|:----------------------|:-----------------------------------------------------------|
+| module | `String` | `'translations'` | sets name of `angular` module |
+| namespaces | `String` or `String[]` | `''` | adds `namespaces` to each `translations` keys |
+| sep | `String` | `'/'` | `namespaces` separator |
+| localeInterpolate | `RegExp` | `/[a-z]{2}_[A-Z]{2}/` | uses to detect `locale` in `resourcePath` |
+| defaultLocale | `String` | `'en_US'` | uses this `locale` if `localeInterpolate` fails to detect it |

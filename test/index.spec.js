@@ -120,7 +120,7 @@ module.exports = translations;`;
         });
     });
 
-    it('should use `app.` prefix', done => {
+    it('should use `app` `namespaces`', done => {
         makeRequest('./test/fixtures/foo.json', (translations, content) => {
             expect(translations).toEqual({
                 'app/foo1': 'one',
@@ -130,11 +130,25 @@ module.exports = translations;`;
 
             done();
         }, {}, {
-            prefix: 'app'
+            namespaces: 'app'
         });
     });
 
-    it('should use `[dir]` prefix', done => {
+    it('should use `["app", "my"]` `namespaces`', done => {
+        makeRequest('./test/fixtures/foo.json', (translations, content) => {
+            expect(translations).toEqual({
+                'app/my/foo1': 'one',
+                'app/my/foo2': 'two'
+            });
+            expect(makeContent(undefined, undefined, translations)).toEqual(content);
+
+            done();
+        }, {}, {
+            namespaces: ['app', 'my']
+        });
+    });
+
+    it('should use `[dir]` `namespaces`', done => {
         makeRequest('./test/fixtures/foo.json', (translations, content) => {
             expect(translations).toEqual({
                 'test/fixtures/foo1': 'one',
@@ -144,11 +158,11 @@ module.exports = translations;`;
 
             done();
         }, {}, {
-            prefix: '[dir]'
+            namespaces: '[dir]'
         });
     });
 
-    it('should use `namespaces`', done => {
+    it('should use `namespaces` with `sep`', done => {
         makeRequest('./test/fixtures/foo.json', (translations, content) => {
             expect(translations).toEqual({
                 'app.foo1': 'one',
@@ -158,8 +172,8 @@ module.exports = translations;`;
 
             done();
         }, {}, {
-            prefix: 'app',
-            namespaces: '.'
+            namespaces: 'app',
+            sep: '.'
         });
     });
 
