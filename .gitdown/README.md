@@ -30,6 +30,6 @@
 |:------------------|:--------------------|:----------------------|:-----------------------------------------------------------|
 | module | `String` | `'translations'` | Sets name of `angular` module |
 | namespaces | `String` or `String[]` | `''` | Adds `namespaces` to each `translations` key. Supports [interpolations](https://github.com/webpack/loader-utils#interpolatename) and also `[dir]`. |
-| sep | `String` | `'/'` | Adds separator to each `namespaces` key. |
+| sep | `String` | `'/'` | Adds `sep` to each `namespaces` key. |
 | localeInterpolate | `RegExp` | `/[a-z]{2}_[A-Z]{2}/` | Uses to detect `locale` in `resourcePath`. |
 | defaultLocale | `String` | `'en_US'` | Uses `defaultLocale` if `localeInterpolate` fails to detect it. |
