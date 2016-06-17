@@ -23,7 +23,7 @@ import loaderUtils from 'loader-utils';
 const DEFAULT_OPTIONS = {
     module: 'translations',
     prefix: '',
-    namespaces: sep,
+    namespaces: '/',
     localeInterpolate: /[a-z]{2}_[A-Z]{2}/,
     defaultLocale: 'en_US'
 };
