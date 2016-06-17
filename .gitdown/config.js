@@ -8,5 +8,10 @@ module.exports = {
             test: /\.json$/,
             loader: 'angular-translate?module=translations'
         }]
+    },
+    angularTranslate: {
+        namespaces: ['app', '[dir]'],
+        sep: '.',
+        defaultLocale: 'de_DE'
     }
 };
