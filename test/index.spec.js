@@ -78,6 +78,21 @@ module.exports = translations;`;
         });
     });
 
+    it('should set `module` to `app.translations`', done => {
+        makeRequest('./test/fixtures/foo.json', (translations, content) => {
+            expect(translations).toEqual({
+                foo1: 'one',
+                foo2: 'two'
+            });
+            expect(makeContent('app.translations', undefined, translations)).toEqual(content);
+
+            done();
+        }, {}, {
+            module: ['app', 'translations'],
+            sep: '.'
+        });
+    });
+
     it('should set `defaultLocale` to `de_DE` if absent', done => {
         makeRequest('./test/fixtures/foo.json', (translations, content) => {
             expect(translations).toEqual({
@@ -120,7 +135,7 @@ module.exports = translations;`;
         });
     });
 
-    it('should use `app` `namespaces`', done => {
+    it('should set `namespaces` to `app`', done => {
         makeRequest('./test/fixtures/foo.json', (translations, content) => {
             expect(translations).toEqual({
                 'app/foo1': 'one',
@@ -134,7 +149,7 @@ module.exports = translations;`;
         });
     });
 
-    it('should use `["app", "my"]` `namespaces`', done => {
+    it('should set `namespaces` to `app.my`', done => {
         makeRequest('./test/fixtures/foo.json', (translations, content) => {
             expect(translations).toEqual({
                 'app/my/foo1': 'one',
@@ -148,7 +163,7 @@ module.exports = translations;`;
         });
     });
 
-    it('should use `[dir]` `namespaces`', done => {
+    it('should resolve `[dir]` `namespaces` as `test/fixtures`', done => {
         makeRequest('./test/fixtures/foo.json', (translations, content) => {
             expect(translations).toEqual({
                 'test/fixtures/foo1': 'one',
@@ -162,7 +177,7 @@ module.exports = translations;`;
         });
     });
 
-    it('should use `namespaces` with `sep`', done => {
+    it('should add `sep`to `namespaces`', done => {
         makeRequest('./test/fixtures/foo.json', (translations, content) => {
             expect(translations).toEqual({
                 'app.foo1': 'one',

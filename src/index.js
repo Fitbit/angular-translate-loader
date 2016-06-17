@@ -44,7 +44,7 @@ const MODULE_EXPORTS = /module\.exports\s?=\s?({[\s\S\n\t]+?});?/;
  * @private
  * @type {Object<String,Function>}
  */
-const NAME_INTERPOLATIONS = {
+const INTERPOLATIONS = {
     /**
      * @private
      * @param {String} context
@@ -85,26 +85,50 @@ const extractLocale = (loaderContext, options) => {
 
 /**
  * @private
- * @param {String} name
+ * @param {String} value
  * @param {*} loaderContext
  * @param {*} content
  * @param {Object} options
  * @returns {String}
  */
-const interpolateName = (name, loaderContext, content, options) => {
+const interpolateValue = (value, loaderContext, content, options) => {
     const context = options.context || loaderContext.options.context || './';
 
-    name = loaderUtils.interpolateName(loaderContext, name, {
+    value = loaderUtils.interpolateName(loaderContext, value, {
         context: context,
         content: isObject(content) ? JSON.stringify(content) : content,
         regExp: options.regExp
     });
 
-    for (const [key, value] of Object.entries(NAME_INTERPOLATIONS)) {
-        name = name.replace(new RegExp(escapeRegExp(key), 'g'), value(context, loaderContext.resourcePath));
+    for (const [name, interpolation] of Object.entries(INTERPOLATIONS)) {
+        const regexp = new RegExp(escapeRegExp(name), 'g');
+
+        value = value.replace(regexp, interpolation(context, loaderContext.resourcePath));
     }
 
-    return name;
+    return value;
+};
+
+/**
+ * @private
+ * @param {String} key
+ * @param {*} loaderContext
+ * @param {*} content
+ * @param {Object} options
+ * @returns {String}
+ */
+const interpolateOptionsValue = (key, loaderContext, content, options) => {
+    let value = options[key];
+
+    if (Array.isArray(value)) {
+        value = value.join(options.sep);
+    }
+
+    if (!isEmpty(value)) {
+        value = interpolateValue(value, loaderContext, content, options);
+    }
+
+    return value;
 };
 
 /**
@@ -115,19 +139,24 @@ const interpolateName = (name, loaderContext, content, options) => {
  * @returns {String}
  */
 const interpolateNamespaces = (loaderContext, content, options) => {
-    let namespaces = options.namespaces;
+    let value = interpolateOptionsValue('namespaces', loaderContext, content, options);
 
-    if (Array.isArray(namespaces)) {
-        namespaces = namespaces.join(options.sep);
+    if (!isEmpty(value)) {
+        value = value.split(sep).join(options.sep) + options.sep;
     }
 
-    if (!isEmpty(namespaces)) {
-        namespaces = interpolateName(namespaces, loaderContext, content, options);
+    return value;
+};
 
-        namespaces = namespaces.split(sep).join(options.sep) + options.sep;
-    }
-
-    return namespaces;
+/**
+ * @private
+ * @param {*} loaderContext
+ * @param {*} content
+ * @param {Object} options
+ * @returns {String}
+ */
+const interpolateModule = (loaderContext, content, options) => {
+    return interpolateOptionsValue('module', loaderContext, content, options);
 };
 
 /**
@@ -173,13 +202,14 @@ export default function(content) {
 
     const options = getOptions(this),
         locale = extractLocale(this, options),
-        translations = extractTranslations(this, content, options);
+        translations = extractTranslations(this, content, options),
+        module = interpolateModule(this, translations, options);
 
     this.value = translations;
 
     return `var angular = require("angular");
 var translations = ${JSON.stringify(translations, null, '\t')};\n
-angular.module("${options.module}", ["pascalprecht.translate"]).config(["$translateProvider", function($translateProvider) {
+angular.module("${module}", ["pascalprecht.translate"]).config(["$translateProvider", function($translateProvider) {
 \t$translateProvider.translations("${locale}", translations);
 }]);\n
 module.exports = translations;`;
