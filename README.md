@@ -43,7 +43,11 @@ module.exports = {
 ```javascript
 var angular = require('angular');
 
-require.context('./locales', true, /\.json$/);
+function requireAll(requireContext) {
+    return requireContext.keys().map(requireContext);
+}
+
+requireAll(require.context('./locales', true, /\.json$/));
 
 angular.module('app', ['translations']);
 
