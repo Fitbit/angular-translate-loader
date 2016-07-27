@@ -208,9 +208,15 @@ export default function(content) {
     this.value = translations;
 
     return `var angular = require("angular");
-var translations = ${JSON.stringify(translations, null, '\t')};\n
-angular.module("${module}", ["pascalprecht.translate"]).config(["$translateProvider", function($translateProvider) {
+var translations = ${JSON.stringify(translations, null, '\t')};
+var module;
+try {
+\tmodule = angular.module("${module}");
+} catch(err) {
+\tmodule = angular.module("${module}", ["pascalprecht.translate"]);
+}
+module.config(["$translateProvider", function($translateProvider) {
 \t$translateProvider.translations("${locale}", translations);
-}]);\n
+}]);
 module.exports = translations;`;
 }
