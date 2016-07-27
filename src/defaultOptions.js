@@ -5,7 +5,7 @@ const DEFAULT_OPTIONS = {
     module: 'translations',
     namespaces: '',
     sep: '/',
-    localeInterpolate: /[a-z]{2}_[A-Z]{2}/,
+    localeInterpolate: /_[a-z]{2}_[A-Z]{2}|_[a-z]{2}/,
     defaultLocale: 'en_US'
 };
 
