@@ -1,39 +1,7 @@
-import {
-    readJson
-} from 'fs-extra';
-import loader from '../src';
-import {
-    generateCode
-} from '../src';
+import generateCode from '../src/generateCode';
+import makeRequest from './helpers/makeRequest';
 
 describe('angular-translate-loader', () => {
-    const makeRequest = (resourcePath, callback, options = {}, query = null) => {
-        readJson(resourcePath, (err, json) => {
-            const context = {
-                resourcePath,
-                options,
-                cacheable: () => {},
-                query: query ? `?${JSON.stringify(query)}` : ''
-            };
-
-            ['inputValue', 'value'].forEach(x => {
-                context[x] = options[x];
-
-                delete options[x];
-            });
-
-            if (err) {
-                json = options.content;
-            }
-
-            delete options.content;
-
-            const content = loader.call(context, json);
-
-            callback(context.value, content);
-        });
-    };
-
     it('should return `translations` for `en_US` locale', done => {
         makeRequest('./test/fixtures/foo.json', (translations, content) => {
             expect(translations).toEqual({
