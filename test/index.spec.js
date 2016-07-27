@@ -52,7 +52,7 @@ describe('angular-translate-loader', () => {
         });
     });
 
-    it('should set `module` to `app.translations`', done => {
+    it('should set `module` to `app.translations` with `.` separator', done => {
         makeRequest('./test/fixtures/foo.json', (translations, content) => {
             expect(translations).toEqual({
                 foo1: 'one',
