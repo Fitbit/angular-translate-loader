@@ -2,6 +2,9 @@ import {
     readJson
 } from 'fs-extra';
 import loader from '../src';
+import {
+    generateCode
+} from '../src';
 
 describe('angular-translate-loader', () => {
     const makeRequest = (resourcePath, callback, options = {}, query = null) => {
@@ -31,22 +34,13 @@ describe('angular-translate-loader', () => {
         });
     };
 
-    const makeContent = (module = 'translations', locale = 'en_US', translations) => {
-        return `var angular = require("angular");
-var translations = ${JSON.stringify(translations, null, '\t')};\n
-angular.module("${module}", ["pascalprecht.translate"]).config(["$translateProvider", function($translateProvider) {
-\t$translateProvider.translations("${locale}", translations);
-}]);\n
-module.exports = translations;`;
-    };
-
     it('should return `translations` for `en_US` locale', done => {
         makeRequest('./test/fixtures/foo.json', (translations, content) => {
             expect(translations).toEqual({
                 foo1: 'one',
                 foo2: 'two'
             });
-            expect(makeContent(undefined, undefined, translations)).toEqual(content);
+            expect(generateCode(undefined, undefined, translations)).toEqual(content);
 
             done();
         });
@@ -58,7 +52,7 @@ module.exports = translations;`;
                 foo1: 'ein',
                 foo2: 'zwei'
             });
-            expect(makeContent(undefined, 'de_DE', translations)).toEqual(content);
+            expect(generateCode(undefined, 'de_DE', translations)).toEqual(content);
 
             done();
         });
@@ -70,7 +64,7 @@ module.exports = translations;`;
                 foo1: 'one',
                 foo2: 'two'
             });
-            expect(makeContent('app.translations', undefined, translations)).toEqual(content);
+            expect(generateCode('app.translations', undefined, translations)).toEqual(content);
 
             done();
         }, {}, {
@@ -84,7 +78,7 @@ module.exports = translations;`;
                 foo1: 'one',
                 foo2: 'two'
             });
-            expect(makeContent('app.translations', undefined, translations)).toEqual(content);
+            expect(generateCode('app.translations', undefined, translations)).toEqual(content);
 
             done();
         }, {}, {
@@ -99,7 +93,7 @@ module.exports = translations;`;
                 foo1: 'one',
                 foo2: 'two'
             });
-            expect(makeContent(undefined, 'de_DE', translations)).toEqual(content);
+            expect(generateCode(undefined, 'de_DE', translations)).toEqual(content);
 
             done();
         }, {
@@ -115,7 +109,7 @@ module.exports = translations;`;
                 foo1: 'ein',
                 foo2: 'zwei'
             });
-            expect(makeContent(undefined, 'de_DE', translations)).toEqual(content);
+            expect(generateCode(undefined, 'de_DE', translations)).toEqual(content);
 
             done();
         });
@@ -127,7 +121,7 @@ module.exports = translations;`;
                 foo1: 'ein',
                 foo2: 'zwei'
             });
-            expect(makeContent(undefined, 'de_DE', translations)).toEqual(content);
+            expect(generateCode(undefined, 'de_DE', translations)).toEqual(content);
 
             done();
         }, {}, {
@@ -141,7 +135,7 @@ module.exports = translations;`;
                 'app/foo1': 'one',
                 'app/foo2': 'two'
             });
-            expect(makeContent(undefined, undefined, translations)).toEqual(content);
+            expect(generateCode(undefined, undefined, translations)).toEqual(content);
 
             done();
         }, {}, {
@@ -155,7 +149,7 @@ module.exports = translations;`;
                 'app/my/foo1': 'one',
                 'app/my/foo2': 'two'
             });
-            expect(makeContent(undefined, undefined, translations)).toEqual(content);
+            expect(generateCode(undefined, undefined, translations)).toEqual(content);
 
             done();
         }, {}, {
@@ -169,7 +163,7 @@ module.exports = translations;`;
                 'test/fixtures/foo1': 'one',
                 'test/fixtures/foo2': 'two'
             });
-            expect(makeContent(undefined, undefined, translations)).toEqual(content);
+            expect(generateCode(undefined, undefined, translations)).toEqual(content);
 
             done();
         }, {}, {
@@ -183,7 +177,7 @@ module.exports = translations;`;
                 'app.foo1': 'one',
                 'app.foo2': 'two'
             });
-            expect(makeContent(undefined, undefined, translations)).toEqual(content);
+            expect(generateCode(undefined, undefined, translations)).toEqual(content);
 
             done();
         }, {}, {
@@ -198,7 +192,7 @@ module.exports = translations;`;
                 foo1: 1,
                 foo2: 2
             });
-            expect(makeContent(undefined, undefined, translations)).toEqual(content);
+            expect(generateCode(undefined, undefined, translations)).toEqual(content);
 
             done();
         }, {
@@ -215,7 +209,7 @@ module.exports = translations;`;
                 foo1: 1,
                 foo2: 2
             });
-            expect(makeContent(undefined, undefined, translations)).toEqual(content);
+            expect(generateCode(undefined, undefined, translations)).toEqual(content);
 
             done();
         }, {
@@ -229,7 +223,7 @@ module.exports = translations;`;
     it('should extract `content` from empty `module.exports = {};', done => {
         makeRequest('./test/fixtures/fake.json', (translations, content) => {
             expect(translations).toEqual({});
-            expect(makeContent(undefined, undefined, translations)).toEqual(content);
+            expect(generateCode(undefined, undefined, translations)).toEqual(content);
 
             done();
         }, {
@@ -243,7 +237,7 @@ module.exports = translations;`;
                 foo1: 1,
                 foo2: 2
             });
-            expect(makeContent(undefined, undefined, translations)).toEqual(content);
+            expect(generateCode(undefined, undefined, translations)).toEqual(content);
 
             done();
         }, {

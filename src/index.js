@@ -207,6 +207,16 @@ export default function(content) {
 
     this.value = translations;
 
+    return generateCode(module, locale, translations);
+}
+
+/**
+ * @param {String} module
+ * @param {String} locale
+ * @param {Object} translations
+ * @return {String}
+ */
+export function generateCode(module = DEFAULT_OPTIONS.module, locale = DEFAULT_OPTIONS.defaultLocale, translations) {
     return `var angular = require("angular");
 var translations = ${JSON.stringify(translations, null, '\t')};
 var module;
