@@ -26,6 +26,18 @@ describe('angular-translate-loader', () => {
         });
     });
 
+    it('should return `translations` for `en` locale', done => {
+        makeRequest('./test/fixtures/foo_en.json', (translations, content) => {
+            expect(translations).toEqual({
+                foo1: 'one',
+                foo2: 'two'
+            });
+            expect(generateCode(undefined, 'en', translations)).toEqual(content);
+
+            done();
+        });
+    });
+
     it('should set `module` to `app.translations`', done => {
         makeRequest('./test/fixtures/foo.json', (translations, content) => {
             expect(translations).toEqual({
@@ -40,7 +52,7 @@ describe('angular-translate-loader', () => {
         });
     });
 
-    it('should set `module` to `app.translations`', done => {
+    it('should set `module` to `app.translations` with `.` separator', done => {
         makeRequest('./test/fixtures/foo.json', (translations, content) => {
             expect(translations).toEqual({
                 foo1: 'one',
