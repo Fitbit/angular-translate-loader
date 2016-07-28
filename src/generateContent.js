@@ -6,7 +6,7 @@ import DEFAULT_OPTIONS from './defaultOptions';
  * @param {Object} translations
  * @return {String}
  */
-export default (module = DEFAULT_OPTIONS.module, locale = DEFAULT_OPTIONS.defaultLocale, translations) => {
+export default (module = DEFAULT_OPTIONS.module, locale = DEFAULT_OPTIONS.defaultLocale, translations = {}) => {
     return `var angular = require("angular");
 var translations = ${JSON.stringify(translations, null, '\t')};
 var module;

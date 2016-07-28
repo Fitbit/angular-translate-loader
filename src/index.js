@@ -1,5 +1,5 @@
 import getOptions from './getOptions';
-import generateCode from './generateCode';
+import generateContent from './generateContent';
 import extractLocale from './extractLocale';
 import extractTranslations from './extractTranslations';
 import interpolateModule from './interpolateModule';
@@ -20,5 +20,5 @@ export default function(content) {
 
     this.value = translations;
 
-    return generateCode(module, locale, translations);
+    return generateContent(module, locale, translations);
 }
