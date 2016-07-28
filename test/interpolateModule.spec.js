@@ -1,16 +1,21 @@
+import {
+    sep,
+    join
+} from 'path';
 import interpolateModule from '../src/interpolateModule';
 
-describe('interpolateOptionsValue', () => {
+describe('interpolateModule', () => {
     it('should interpolate `module` value', () => {
-        expect('test/fixtures').toEqual(interpolateModule({
+        expect(join('test', 'fixtures')).toEqual(interpolateModule({
             resourcePath: './test/fixtures/foo.json',
             context: './test/fixtures',
             options: {}
         }, '', {
-            module: '[dir]'
+            module: '[dir]',
+            sep
         }));
 
-        expect('test/fixtures/app').toEqual(interpolateModule({
+        expect(join('test', 'fixtures', 'app')).toEqual(interpolateModule({
             resourcePath: './test/fixtures/foo.json',
             context: './test/fixtures',
             options: {}
@@ -19,7 +24,7 @@ describe('interpolateOptionsValue', () => {
                 '[dir]',
                 'app'
             ],
-            sep: '/'
+            sep
         }));
     });
 });
