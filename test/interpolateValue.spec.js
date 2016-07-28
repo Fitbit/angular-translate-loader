@@ -16,11 +16,5 @@ describe('interpolateValue', () => {
             context: './test/fixtures',
             options: {}
         }, '', options));
-
-        expect(join('test', 'fixtures')).toEqual(interpolateValue('[dir]', {
-            resourcePath: './test/fixtures/foo.json',
-            context: './test/fixtures',
-            options: {}
-        }, {}, options));
     });
 });
