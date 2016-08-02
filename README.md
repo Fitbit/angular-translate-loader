@@ -7,8 +7,7 @@
 [![Development Dependency Status](https://img.shields.io/david/dev/mdreizin/angular-translate-loader.svg?style=flat-square)](https://david-dm.org/mdreizin/angular-translate-loader#info=devDependencies)
 
 <h1 id="angular-translate-loader">angular-translate-loader</h1>
-
-`angular-translate` loader for webpack
+> `angular-translate` loader for webpack
 
 <h2 id="angular-translate-loader-usage">Usage</h2>
 
@@ -60,5 +59,5 @@ angular.module('app', ['translations']);
 | module | `String` or `String[]` | `'translations'` | Sets name of `angular` module. Supports [interpolations](https://github.com/webpack/loader-utils#interpolatename) and also `[dir]`. |
 | namespaces | `String` or `String[]` | `''` | Adds `namespaces` to each `translations` key. Supports [interpolations](https://github.com/webpack/loader-utils#interpolatename) and also `[dir]`. |
 | sep | `String` | `'/'` | Separator for `namespaces` and `module`. |
-| localeInterpolate | `RegExp` | `/_[a-z]{2}_[A-Z]{2}|_[a-z]{2}/` | Uses to detect `locale` in `resourcePath`. |
+| localeInterpolate | `RegExp` | `/[a-z]{2}_[A-Z]{2}/` | Uses to detect `locale` in `resourcePath`. |
 | defaultLocale | `String` | `'en_US'` | Uses `defaultLocale` if `localeInterpolate` fails to detect it. |

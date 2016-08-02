@@ -7,8 +7,7 @@
 {"gitdown": "badge", "name": "david-dev"}
 
 # {"gitdown": "gitinfo", "name": "name"}
-
-`angular-translate` loader for webpack
+> `angular-translate` loader for webpack
 
 ## Usage
 
