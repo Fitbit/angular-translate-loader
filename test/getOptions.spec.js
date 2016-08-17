@@ -27,21 +27,6 @@ describe('getOptions', () => {
         }));
     });
 
-    it('should get options from `{localeInterpolate: /en_US/}`', () => {
-        expect(getExpectedOptions({
-            localeInterpolate: [
-                /en_US/
-            ]
-        })).toEqual(getOptions({
-            query: '?config=angularTranslate',
-            options: {
-                angularTranslate: {
-                    localeInterpolate: /en_US/
-                }
-            }
-        }));
-    });
-
     it('should get options from `{localeInterpolate: ["en_US", "de_DE"]}`', () => {
         expect(getExpectedOptions({
             localeInterpolate: [
@@ -56,6 +41,21 @@ describe('getOptions', () => {
                         'en_US',
                         'de_DE'
                     ]
+                }
+            }
+        }));
+    });
+
+    it('should get options from `{localeInterpolate: /en_US/}`', () => {
+        expect(getExpectedOptions({
+            localeInterpolate: [
+                /en_US/
+            ]
+        })).toEqual(getOptions({
+            query: '?config=angularTranslate',
+            options: {
+                angularTranslate: {
+                    localeInterpolate: /en_US/
                 }
             }
         }));
