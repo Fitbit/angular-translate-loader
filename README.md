@@ -59,5 +59,5 @@ angular.module('app', ['translations']);
 | module | `String` or `String[]` | `'translations'` | Sets name of `angular` module. Supports [interpolations](https://github.com/webpack/loader-utils#interpolatename) and also `[dir]`. |
 | namespaces | `String` or `String[]` | `''` | Adds `namespaces` to each `translations` key. Supports [interpolations](https://github.com/webpack/loader-utils#interpolatename) and also `[dir]`. |
 | sep | `String` | `'/'` | Separator for `namespaces` and `module`. |
-| localeInterpolate | `RegExp` | `/[a-z]{2}_[A-Z]{2}/` | Uses to detect `locale` in `resourcePath`. |
+| localeInterpolate | `RegExp|RegExp[]|String|String[]` | `[/_[a-z]{2}_[A-Z]{2}\./, /_[a-z]{2}\./, /[/\\][a-z]{2}_[A-Z]{2}[/\\]/, /[/\\][a-z]{2}[/\\]/]` | Uses to detect `locale` in `resourcePath`. |
 | defaultLocale | `String` | `'en_US'` | Uses `defaultLocale` if `localeInterpolate` fails to detect it. |
