@@ -1,15 +1,12 @@
 import {
     trim
 } from 'lodash';
-import {
-    sep
-} from 'path';
 
 /**
  * @private
  * @type {String}
  */
-const SPECIAL_CHARS = `._-${sep}`;
+const SPECIAL_CHARS = '._-/\\';
 
 /**
  * @param {String} locale
