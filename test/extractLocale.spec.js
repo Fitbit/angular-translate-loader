@@ -31,8 +31,16 @@ describe('extractLocale', () => {
             resourcePath: './test/fixtures/de_DE/foo.json'
         }, defaultOptions));
 
+        expect('de_DE').toEqual(extractLocale({
+            resourcePath: './test/fixtures\\de_DE\\foo.json'
+        }, defaultOptions));
+
         expect('en').toEqual(extractLocale({
             resourcePath: './test/fixtures/en/foo.json'
+        }, defaultOptions));
+
+        expect('en').toEqual(extractLocale({
+            resourcePath: './test/fixtures\\en\\foo.json'
         }, defaultOptions));
     });
 });
