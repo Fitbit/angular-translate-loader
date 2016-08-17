@@ -6,7 +6,7 @@ import {
  * @private
  * @type {String}
  */
-const SPECIAL_CHARS = '_-/';
+const SPECIAL_CHARS = '._-\/';
 
 /**
  * @param {String} locale
