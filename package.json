@@ -28,7 +28,7 @@
     "instrument": false
   },
   "author": "Marat Dreizin <marat.dreizin@gmail.com>",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/mdreizin/angular-translate-loader.git"
