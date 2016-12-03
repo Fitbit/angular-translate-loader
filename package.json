@@ -59,7 +59,7 @@
     "gitdown": "^2.4.9",
     "jasmine": "^2.4.1",
     "jasmine-spec-reporter": "^2.5.0",
-    "nyc": "^9.0.1",
+    "nyc": "^10.0.0",
     "semantic-release": "^6.3.2",
     "travis-after-all": "^1.4.4"
   },
