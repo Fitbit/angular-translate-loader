@@ -1,15 +1,17 @@
 [![NPM version](http://img.shields.io/npm/v/angular-translate-loader.svg?style=flat-square)](https://www.npmjs.org/package/angular-translate-loader)
-[![Travis build status](http://img.shields.io/travis/mdreizin/angular-translate-loader/master.svg?style=flat-square)](https://travis-ci.org/mdreizin/angular-translate-loader)
-[![AppVeyor build status](https://img.shields.io/appveyor/ci/mdreizin/angular-translate-loader/master.svg?style=flat-square)](https://ci.appveyor.com/project/mdreizin/angular-translate-loader/branch/master)
-[![Code Climate GPA](https://img.shields.io/codeclimate/github/mdreizin/angular-translate-loader.svg?style=flat-square)](https://codeclimate.com/github/mdreizin/angular-translate-loader)
-[![Code Climate Coverage](https://img.shields.io/codeclimate/coverage/github/mdreizin/angular-translate-loader.svg?style=flat-square)](https://codeclimate.com/github/mdreizin/angular-translate-loader)
-[![Dependency Status](https://img.shields.io/david/mdreizin/angular-translate-loader.svg?style=flat-square)](https://david-dm.org/mdreizin/angular-translate-loader)
-[![Development Dependency Status](https://img.shields.io/david/dev/mdreizin/angular-translate-loader.svg?style=flat-square)](https://david-dm.org/mdreizin/angular-translate-loader#info=devDependencies)
+[![Travis build status](http://img.shields.io/travis/Fitbit/angular-translate-loader/master.svg?style=flat-square)](https://travis-ci.org/Fitbit/angular-translate-loader)
+[![AppVeyor build status](https://img.shields.io/appveyor/ci/Fitbit/angular-translate-loader/master.svg?style=flat-square)](https://ci.appveyor.com/project/Fitbit/angular-translate-loader/branch/master)
+[![Code Climate GPA](https://img.shields.io/codeclimate/github/Fitbit/angular-translate-loader.svg?style=flat-square)](https://codeclimate.com/github/Fitbit/angular-translate-loader)
+[![Code Climate Coverage](https://img.shields.io/codeclimate/coverage/github/Fitbit/angular-translate-loader.svg?style=flat-square)](https://codeclimate.com/github/Fitbit/angular-translate-loader)
+[![Dependency Status](https://img.shields.io/david/Fitbit/angular-translate-loader.svg?style=flat-square)](https://david-dm.org/Fitbit/angular-translate-loader)
+[![Development Dependency Status](https://img.shields.io/david/dev/Fitbit/angular-translate-loader.svg?style=flat-square)](https://david-dm.org/Fitbit/angular-translate-loader#info=devDependencies)
 
-<h1 id="angular-translate-loader">angular-translate-loader</h1>
+<a name="angular-translate-loader"></a>
+# angular-translate-loader
 > `angular-translate` loader for webpack
 
-<h2 id="angular-translate-loader-usage">Usage</h2>
+<a name="angular-translate-loader-usage"></a>
+## Usage
 
 ```javascript
 var translations = require('!json!angular-translate?module=translations!./file.json');
@@ -52,7 +54,8 @@ angular.module('app', ['translations']);
 
 ```
 
-<h2 id="angular-translate-loader-options">Options</h2>
+<a name="angular-translate-loader-options"></a>
+## Options
 
 | Name | Type | Default Value | Description |
 |:------------------|:--------------------|:----------------------|:-----------------------------------------------------------|
