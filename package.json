@@ -31,7 +31,7 @@
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mdreizin/angular-translate-loader.git"
+    "url": "https://github.com/Fitbit/angular-translate-loader.git"
   },
   "keywords": [
     "webpack",
@@ -39,9 +39,9 @@
     "translate"
   ],
   "bugs": {
-    "url": "https://github.com/mdreizin/angular-translate-loader/issues"
+    "url": "https://github.com/Fitbit/angular-translate-loader/issues"
   },
-  "homepage": "https://github.com/mdreizin/angular-translate-loader",
+  "homepage": "https://github.com/Fitbit/angular-translate-loader",
   "devDependencies": {
     "babel-cli": "^6.14.0",
     "babel-eslint": "^7.0.0",
