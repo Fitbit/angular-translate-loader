@@ -63,6 +63,9 @@
     "semantic-release": "^6.3.2",
     "travis-after-all": "^1.4.4"
   },
+  "peerDependencies": {
+    "angular": "1.x"
+  },
   "dependencies": {
     "babel-runtime": "^6.9.2",
     "loader-utils": "^0.2.15",

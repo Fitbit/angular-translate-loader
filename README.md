@@ -1,6 +1,6 @@
 [![NPM version](http://img.shields.io/npm/v/angular-translate-loader.svg?style=flat-square)](https://www.npmjs.org/package/angular-translate-loader)
 [![Travis build status](http://img.shields.io/travis/Fitbit/angular-translate-loader/master.svg?style=flat-square)](https://travis-ci.org/Fitbit/angular-translate-loader)
-[![AppVeyor build status](https://img.shields.io/appveyor/ci/Fitbit/angular-translate-loader/master.svg?style=flat-square)](https://ci.appveyor.com/project/Fitbit/angular-translate-loader/branch/master)
+[![AppVeyor build status](https://img.shields.io/appveyor/ci/mdreizin/angular-translate-loader/master.svg?style=flat-square)](https://ci.appveyor.com/project/mdreizin/angular-translate-loader/branch/master)
 [![Code Climate GPA](https://img.shields.io/codeclimate/github/Fitbit/angular-translate-loader.svg?style=flat-square)](https://codeclimate.com/github/Fitbit/angular-translate-loader)
 [![Code Climate Coverage](https://img.shields.io/codeclimate/coverage/github/Fitbit/angular-translate-loader.svg?style=flat-square)](https://codeclimate.com/github/Fitbit/angular-translate-loader)
 [![Dependency Status](https://img.shields.io/david/Fitbit/angular-translate-loader.svg?style=flat-square)](https://david-dm.org/Fitbit/angular-translate-loader)
@@ -10,15 +10,138 @@
 # angular-translate-loader
 > `angular-translate` loader for webpack
 
+This loader helps to reduce writing the boilerplate code for [`angular-translate`](https://github.com/angular-translate/angular-translate).
+
+<a name="angular-translate-loader-installation"></a>
+## Installation
+
+```bash
+npm install angular --save && npm install angular-translate-loader --save-dev
+```
+
+or
+
+```bash
+yarn add angular && yarn add angular-translate-loader --dev
+```
+
 <a name="angular-translate-loader-usage"></a>
 ## Usage
 
-```javascript
-var translations = require('!json!angular-translate?module=translations!./file.json');
+Instead of writing boilerplate code something like this:
 
-console.log(translations);
+```javascript
+var translations = angular.module('translations', ['pascalprecht.translate']);
+
+translations.config(function($translateProvider) {
+    $translateProvider.translations('en_US', {
+        foo: 'bar',
+        bar: {
+            baz: 'qux'
+        }
+    });
+});
 
 ```
+
+You can do that in single line:
+
+`./index.js`
+
+```javascript
+var translations = require('!json!angular-translate?module=translations!./index.json');
+
+console.log(translations); // Object { foo: "bar", bar: { baz: "qux" } }
+
+```
+
+and the loader will do all work for you:
+
+```javascript
+var angular = require("angular");
+var translations = {
+    foo: "bar",
+    bar: {
+        baz: "qux"
+    }
+};
+var module;
+try {
+    module = angular.module("translations");
+} catch(err) {
+    module = angular.module("translations", ["pascalprecht.translate"]);
+}
+module.config(["$translateProvider", function($translateProvider) {
+    $translateProvider.translations("en_US", translations);
+}]);
+module.exports = translations;
+
+```
+
+Also it detects locales in the requested file (please see `localeInterpolate` option):
+
+`./de_DE.json`
+
+```json
+{
+  "foo": "Bar",
+  "bar": {
+    "baz": "Qux"
+  }
+}
+
+```
+
+`./index.js`
+
+```javascript
+var translations = require('!json!angular-translate?module=translations!./index.json');
+
+console.log(translations); // Object { foo: "Bar", bar: { baz: "Qux" } }
+
+```
+
+```javascript
+var angular = require("angular");
+var translations = {
+    foo: "Bar",
+    bar: {
+        baz: "Qux"
+    }
+};
+var module;
+try {
+    module = angular.module("translations");
+} catch(err) {
+    module = angular.module("translations", ["pascalprecht.translate"]);
+}
+module.config(["$translateProvider", function($translateProvider) {
+    $translateProvider.translations("de_DE", translations);
+}]);
+module.exports = translations;
+
+```
+
+Also if you want to require all translations at once you can do that as well:
+
+`./index.js`
+
+```javascript
+var angular = require('angular');
+
+function requireAll(requireContext) {
+    return requireContext.keys().map(requireContext);
+}
+
+requireAll(require.context('./locales', true, /\.json$/));
+
+angular.module('app', ['translations']);
+
+```
+
+If you want to add some global options you can do that easily:
+
+`./webpack.config.js`
 
 ```javascript
 module.exports = {
@@ -38,19 +161,6 @@ module.exports = {
         defaultLocale: 'de_DE'
     }
 };
-
-```
-
-```javascript
-var angular = require('angular');
-
-function requireAll(requireContext) {
-    return requireContext.keys().map(requireContext);
-}
-
-requireAll(require.context('./locales', true, /\.json$/));
-
-angular.module('app', ['translations']);
 
 ```
 
