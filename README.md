@@ -6,13 +6,11 @@
 [![Dependency Status](https://img.shields.io/david/Fitbit/angular-translate-loader.svg?style=flat-square)](https://david-dm.org/Fitbit/angular-translate-loader)
 [![Development Dependency Status](https://img.shields.io/david/dev/Fitbit/angular-translate-loader.svg?style=flat-square)](https://david-dm.org/Fitbit/angular-translate-loader#info=devDependencies)
 
-<a name="angular-translate-loader"></a>
 # angular-translate-loader
 > `angular-translate` loader for webpack
 
 This loader helps to reduce writing the boilerplate code for [`angular-translate`](https://github.com/angular-translate/angular-translate).
 
-<a name="angular-translate-loader-installation"></a>
 ## Installation
 
 ```bash
@@ -25,11 +23,12 @@ or
 yarn add angular && yarn add angular-translate-loader --dev
 ```
 
-<a name="angular-translate-loader-usage"></a>
 ## Usage
 
 Instead of writing boilerplate code something like this:
 
+<!-- global angular -->
+<!-- eslint no-console: "allow" -->
 ```javascript
 var translations = angular.module('translations', ['pascalprecht.translate']);
 
@@ -41,18 +40,17 @@ translations.config(function($translateProvider) {
         }
     });
 });
-
 ```
 
 You can do that in single line:
 
 `./index.js`
 
+<!-- eslint no-console: "allow" -->
 ```javascript
 var translations = require('!json!angular-translate?module=translations!./index.json');
 
 console.log(translations); // Object { foo: "bar", bar: { baz: "qux" } }
-
 ```
 
 and the loader will do all work for you:
@@ -75,7 +73,6 @@ module.config(["$translateProvider", function($translateProvider) {
     $translateProvider.translations("en_US", translations);
 }]);
 module.exports = translations;
-
 ```
 
 Also it detects locales in the requested file (please see `localeInterpolate` option):
@@ -89,16 +86,15 @@ Also it detects locales in the requested file (please see `localeInterpolate` op
     "baz": "Qux"
   }
 }
-
 ```
 
 `./index.js`
 
+<!-- eslint no-console: "allow" -->
 ```javascript
 var translations = require('!json!angular-translate?module=translations!./index.json');
 
 console.log(translations); // Object { foo: "Bar", bar: { baz: "Qux" } }
-
 ```
 
 ```javascript
@@ -119,7 +115,6 @@ module.config(["$translateProvider", function($translateProvider) {
     $translateProvider.translations("de_DE", translations);
 }]);
 module.exports = translations;
-
 ```
 
 Also if you want to require all translations at once you can do that as well:
@@ -136,7 +131,6 @@ function requireAll(requireContext) {
 requireAll(require.context('./locales', true, /\.json$/));
 
 angular.module('app', ['translations']);
-
 ```
 
 If you want to add some global options you can do that easily:
@@ -161,10 +155,8 @@ module.exports = {
         defaultLocale: 'de_DE'
     }
 };
-
 ```
 
-<a name="angular-translate-loader-options"></a>
 ## Options
 
 | Name | Type | Default Value | Description |
