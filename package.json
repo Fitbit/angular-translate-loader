@@ -7,8 +7,8 @@
     "src/"
   ],
   "scripts": {
-    "clean": "rm -rf ./dist && rm -rf ./coverage",
-    "eslint": "eslint ./ --cache",
+    "clean": "rm -rf ./dist ./coverage",
+    "eslint": "eslint --ext=js,md ./ --cache",
     "build": "babel src --out-dir dist --source-maps",
     "test": "babel-node jasmine.js",
     "cover": "NODE_ENV=test nyc --reporter=lcov jasmine JASMINE_CONFIG_PATH=jasmine.json",
@@ -54,8 +54,8 @@
     "codeclimate-test-reporter": "^0.4.0",
     "eslint": "^3.15.0",
     "eslint-plugin-babel": "^4.0.0",
+    "eslint-plugin-markdown": "^1.0.0-beta.3",
     "fs-extra": "^2.0.0",
-    "gitdown": "^2.4.9",
     "jasmine": "^2.4.1",
     "jasmine-spec-reporter": "^3.1.0",
     "nyc": "^10.0.0",
