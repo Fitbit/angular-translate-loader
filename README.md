@@ -1,15 +1,15 @@
-[![NPM version](http://img.shields.io/npm/v/angular-translate-loader.svg?style=flat-square)](https://www.npmjs.org/package/angular-translate-loader)
-[![Travis build status](http://img.shields.io/travis/Fitbit/angular-translate-loader/master.svg?style=flat-square)](https://travis-ci.org/Fitbit/angular-translate-loader)
-[![AppVeyor build status](https://img.shields.io/appveyor/ci/mdreizin/angular-translate-loader/master.svg?style=flat-square)](https://ci.appveyor.com/project/mdreizin/angular-translate-loader/branch/master)
-[![Code Climate GPA](https://img.shields.io/codeclimate/github/Fitbit/angular-translate-loader.svg?style=flat-square)](https://codeclimate.com/github/Fitbit/angular-translate-loader)
-[![Code Climate Coverage](https://img.shields.io/codeclimate/coverage/github/Fitbit/angular-translate-loader.svg?style=flat-square)](https://codeclimate.com/github/Fitbit/angular-translate-loader)
-[![Dependency Status](https://img.shields.io/david/Fitbit/angular-translate-loader.svg?style=flat-square)](https://david-dm.org/Fitbit/angular-translate-loader)
-[![Development Dependency Status](https://img.shields.io/david/dev/Fitbit/angular-translate-loader.svg?style=flat-square)](https://david-dm.org/Fitbit/angular-translate-loader#info=devDependencies)
+[![NPM version](http://img.shields.io/npm/v/angular-translate-loader.svg)](https://www.npmjs.org/package/angular-translate-loader)
+[![Travis build status](http://img.shields.io/travis/Fitbit/angular-translate-loader/master.svg)](https://travis-ci.org/Fitbit/angular-translate-loader)
+[![AppVeyor build status](https://img.shields.io/appveyor/ci/mdreizin/angular-translate-loader/master.svg)](https://ci.appveyor.com/project/mdreizin/angular-translate-loader/branch/master)
+[![Code Climate GPA](https://img.shields.io/codeclimate/github/Fitbit/angular-translate-loader.svg)](https://codeclimate.com/github/Fitbit/angular-translate-loader)
+[![Code Climate Coverage](https://img.shields.io/codeclimate/coverage/github/Fitbit/angular-translate-loader.svg)](https://codeclimate.com/github/Fitbit/angular-translate-loader)
+[![Dependency Status](https://img.shields.io/david/Fitbit/angular-translate-loader.svg)](https://david-dm.org/Fitbit/angular-translate-loader)
+[![Development Dependency Status](https://img.shields.io/david/dev/Fitbit/angular-translate-loader.svg)](https://david-dm.org/Fitbit/angular-translate-loader#info=devDependencies)
+[![Greenkeeper badge](https://badges.greenkeeper.io/Fitbit/angular-translate-loader.svg)](https://greenkeeper.io/)
 
 <a name="angular-translate-loader"></a>
 # angular-translate-loader
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/Fitbit/angular-translate-loader.svg)](https://greenkeeper.io/)
 > `angular-translate` loader for webpack
 
 This loader helps to reduce writing the boilerplate code for [`angular-translate`](https://github.com/angular-translate/angular-translate).
