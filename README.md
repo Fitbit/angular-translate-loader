@@ -8,7 +8,6 @@
 [![Greenkeeper badge](https://badges.greenkeeper.io/Fitbit/angular-translate-loader.svg)](https://greenkeeper.io/)
 
 # angular-translate-loader
-
 > `angular-translate` loader for webpack
 
 This loader helps to reduce writing the boilerplate code for [`angular-translate`](https://github.com/angular-translate/angular-translate).
