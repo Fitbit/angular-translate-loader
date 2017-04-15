@@ -56,7 +56,7 @@
     "eslint-plugin-markdown": "^1.0.0-beta.3",
     "fs-extra": "^2.0.0",
     "jasmine": "^2.4.1",
-    "jasmine-spec-reporter": "^3.1.0",
+    "jasmine-spec-reporter": "^4.0.0",
     "nyc": "^10.0.0",
     "semantic-release": "^6.3.2",
     "travis-after-all": "^1.4.4"
