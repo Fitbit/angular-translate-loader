@@ -18,7 +18,9 @@ export default function(content) {
         translations = extractTranslations(this, content, options),
         module = interpolateModule(this, translations, options);
 
-    this.value = translations;
+    if (typeof this.setTranslationsForTesting == 'function') {
+        this.setTranslationsForTesting(translations);
+    }
 
     return generateContent(module, locale, translations);
 }
