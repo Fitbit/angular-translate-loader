@@ -142,19 +142,16 @@ If you want to add some global options you can do that easily:
 ```javascript
 module.exports = {
     module: {
-        preLoaders: [{
+        rules: [{
             test: /\.json$/,
-            loader: 'json'
-        }],
-        loaders: [{
-            test: /\.json$/,
-            loader: 'angular-translate?module=translations'
+            loader: 'angular-translate-loader',
+            options: {
+                module: 'translations',
+                namespaces: ['app', '[dir]'],
+                sep: '.',
+                defaultLocale: 'de_DE'
+            }
         }]
-    },
-    angularTranslate: {
-        namespaces: ['app', '[dir]'],
-        sep: '.',
-        defaultLocale: 'de_DE'
     }
 };
 ```
