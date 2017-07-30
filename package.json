@@ -42,30 +42,30 @@
   },
   "homepage": "https://github.com/Fitbit/angular-translate-loader",
   "devDependencies": {
-    "babel-cli": "^6.14.0",
-    "babel-eslint": "^7.0.0",
-    "babel-loader": "^6.2.9",
+    "babel-cli": "^6.24.1",
+    "babel-eslint": "^7.2.3",
+    "babel-loader": "^7.1.1",
     "babel-plugin-add-module-exports": "^0.2.1",
-    "babel-plugin-istanbul": "^4.0.0",
-    "babel-plugin-transform-runtime": "^6.9.0",
+    "babel-plugin-istanbul": "^4.1.4",
+    "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.6.0",
-    "babel-register": "^6.14.0",
-    "codeclimate-test-reporter": "^0.4.0",
-    "eslint": "^3.15.0",
-    "eslint-plugin-babel": "^4.0.0",
-    "eslint-plugin-markdown": "^1.0.0-beta.3",
-    "fs-extra": "^2.0.0",
-    "jasmine": "^2.4.1",
-    "jasmine-spec-reporter": "^3.1.0",
-    "nyc": "^10.0.0",
-    "semantic-release": "^6.3.2"
+    "babel-register": "^6.24.1",
+    "codeclimate-test-reporter": "^0.5.0",
+    "eslint": "^4.3.0",
+    "eslint-plugin-babel": "^4.1.2",
+    "eslint-plugin-markdown": "^1.0.0-beta.6",
+    "fs-extra": "^4.0.0",
+    "jasmine": "^2.7.0",
+    "jasmine-spec-reporter": "^4.1.1",
+    "nyc": "^11.1.0",
+    "semantic-release": "^6.3.6"
   },
   "peerDependencies": {
     "angular": "1.x"
   },
   "dependencies": {
-    "babel-runtime": "^6.9.2",
-    "loader-utils": "^0.2.15",
-    "lodash": "^4.16.6"
+    "babel-runtime": "^6.25.0",
+    "loader-utils": "^1.1.0",
+    "lodash": "^4.17.4"
   }
 }
