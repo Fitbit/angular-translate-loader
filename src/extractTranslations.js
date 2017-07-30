@@ -3,7 +3,9 @@ import {
     isString,
     mapKeys
 } from 'lodash';
-import loaderUtils from 'loader-utils';
+import {
+    parseString
+} from 'loader-utils';
 import interpolateNamespaces from './interpolateNamespaces';
 
 /**
@@ -29,7 +31,7 @@ export default (loaderContext, content, options) => {
         const match = content.match(MODULE_EXPORTS),
             value = match.length >= 1 ? match[1].toString() : '{}';
 
-        translations = JSON.parse(loaderUtils.parseString(value));
+        translations = JSON.parse(parseString(value));
     } else {
         translations = content;
     }

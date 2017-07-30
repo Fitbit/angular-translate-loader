@@ -5,11 +5,7 @@ describe('getOptions', () => {
     const getExpectedOptions = options => Object.assign({}, defaultOptions, options);
 
     it('should get default `options`', () => {
-        expect(getExpectedOptions(defaultOptions)).toEqual(getOptions({
-            angularTranslate: {},
-            query: '?config=angularTranslate',
-            options: {}
-        }));
+        expect(getExpectedOptions(defaultOptions)).toEqual(getOptions({}));
     });
 
     it('should get options from `{localeInterpolate: "en_US"}`', () => {
@@ -18,11 +14,8 @@ describe('getOptions', () => {
                 /en_US/
             ]
         })).toEqual(getOptions({
-            query: '?config=angularTranslate',
-            options: {
-                angularTranslate: {
-                    localeInterpolate: 'en_US'
-                }
+            query: {
+                localeInterpolate: 'en_US'
             }
         }));
     });
@@ -34,14 +27,11 @@ describe('getOptions', () => {
                 /de_DE/
             ]
         })).toEqual(getOptions({
-            query: '?config=angularTranslate',
-            options: {
-                angularTranslate: {
-                    localeInterpolate: [
-                        'en_US',
-                        'de_DE'
-                    ]
-                }
+            query: {
+                localeInterpolate: [
+                    'en_US',
+                    'de_DE'
+                ]
             }
         }));
     });
@@ -52,11 +42,8 @@ describe('getOptions', () => {
                 /en_US/
             ]
         })).toEqual(getOptions({
-            query: '?config=angularTranslate',
-            options: {
-                angularTranslate: {
-                    localeInterpolate: /en_US/
-                }
+            query: {
+                localeInterpolate: /en_US/
             }
         }));
     });
@@ -68,14 +55,11 @@ describe('getOptions', () => {
                 /de_DE/
             ]
         })).toEqual(getOptions({
-            query: '?config=angularTranslate',
-            options: {
-                angularTranslate: {
-                    localeInterpolate: [
-                        /en_US/,
-                        /de_DE/
-                    ]
-                }
+            query: {
+                localeInterpolate: [
+                    /en_US/,
+                    /de_DE/
+                ]
             }
         }));
     });
