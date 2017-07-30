@@ -29,8 +29,9 @@ yarn add angular && yarn add angular-translate-loader --dev
 Instead of writing boilerplate code something like this:
 
 <!-- global angular -->
-<!-- eslint no-console: "allow" -->
+<!-- eslint no-console: 0 -->
 ```javascript
+var angular = require("angular");
 var translations = angular.module('translations', ['pascalprecht.translate']);
 
 translations.config(function($translateProvider) {
@@ -47,7 +48,7 @@ You can do that in single line:
 
 `./index.js`
 
-<!-- eslint no-console: "allow" -->
+<!-- eslint no-console: 0 -->
 ```javascript
 var translations = require('!json!angular-translate?module=translations!./index.json');
 
@@ -91,7 +92,7 @@ Also it detects locales in the requested file (please see `localeInterpolate` op
 
 `./index.js`
 
-<!-- eslint no-console: "allow" -->
+<!-- eslint no-console: 0 -->
 ```javascript
 var translations = require('!json!angular-translate?module=translations!./index.json');
 
