@@ -8,7 +8,9 @@ import {
     dirname,
     resolve
 } from 'path';
-import loaderUtils from 'loader-utils';
+import {
+    interpolateName
+} from 'loader-utils';
 
 /**
  * @private
@@ -34,7 +36,7 @@ const INTERPOLATIONS = {
 export default (value, loaderContext, content, options) => {
     const context = options.context || loaderContext.options.context || './';
 
-    value = loaderUtils.interpolateName(loaderContext, value, {
+    value = interpolateName(loaderContext, value, {
         context: context,
         content: isObject(content) ? JSON.stringify(content) : content,
         regExp: options.regExp

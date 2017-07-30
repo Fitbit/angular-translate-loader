@@ -1,18 +1,13 @@
 import {
     defaults,
-    camelCase,
     isString,
     isRegExp,
     escapeRegExp
 } from 'lodash';
-import loaderUtils from 'loader-utils';
+import {
+    getOptions
+} from 'loader-utils';
 import DEFAULT_OPTIONS from './defaultOptions';
-
-/**
- * @private
- * @type {String}
- */
-const CONFIG_KEY = camelCase('angular-translate');
 
 /**
  * @private
@@ -51,7 +46,7 @@ const getLocaleInterpolate = options => {
  * @returns {Object}
  */
 export default loaderContext => {
-    const options = loaderUtils.getLoaderConfig(loaderContext, CONFIG_KEY);
+    const options = getOptions(loaderContext) || {};
 
     options.localeInterpolate = getLocaleInterpolate(options);
 
