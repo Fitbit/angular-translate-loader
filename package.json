@@ -32,6 +32,9 @@
     "type": "git",
     "url": "https://github.com/Fitbit/angular-translate-loader.git"
   },
+  "release": {
+    "analyzeCommits": "semantic-release-conventional-commits"
+  },
   "keywords": [
     "webpack",
     "angular",
@@ -58,7 +61,8 @@
     "jasmine": "^2.7.0",
     "jasmine-spec-reporter": "^4.1.1",
     "nyc": "^11.1.0",
-    "semantic-release": "^7.0.1"
+    "semantic-release": "^7.0.1",
+    "semantic-release-conventional-commits": "^1.1.0"
   },
   "peerDependencies": {
     "angular": "1.x"
