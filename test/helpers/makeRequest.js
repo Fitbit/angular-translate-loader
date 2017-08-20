@@ -18,6 +18,10 @@ export default (resourcePath, callback, options = {}, query = null) => {
             delete options[x];
         });
 
+        context.setTranslationsForTesting = function (translations) {
+            this.value = translations;
+        }
+
         if (err) {
             json = options.content;
         }
