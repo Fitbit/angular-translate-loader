@@ -6,6 +6,9 @@ import {
 import {
     parseString
 } from 'loader-utils';
+import {
+    name
+} from '../package.json';
 import interpolateNamespaces from './interpolateNamespaces';
 
 /**
@@ -15,32 +18,96 @@ import interpolateNamespaces from './interpolateNamespaces';
 const MODULE_EXPORTS = /module\.exports\s?=\s?({[\s\S\n\t]+?});?/;
 
 /**
+ * @private
+ * @param {String} value
+ * @return {Object}
+ */
+function parseJson(value) {
+    return JSON.parse(parseString(value));
+}
+
+/**
+ * @param {String} value
+ * @return {Boolean}
+ */
+function isModule(value) {
+    return isString(value) && MODULE_EXPORTS.test(value);
+}
+
+/**
+ * @param {String} value
+ * @return {Object}
+ */
+function extractFromModule(value) {
+    const matches = value.match(MODULE_EXPORTS),
+        match = matches.length >= 1 ? matches[1].toString() : '{}';
+
+    return parseJson(match);
+}
+
+/**
+ * @param {String} value
+ * @return {Object}
+ */
+function convertValue(value) {
+    let result;
+
+    if (isModule(value)) {
+        result = extractFromModule(value);
+    } else if (isString(value)) {
+        result = parseJson(value);
+    } else if (isObject(value)) {
+        result = value;
+    }
+
+    if (!isObject(result)) {
+        throw new Error(`"${name}" loader only accepts 'Object' value.`);
+    }
+
+    return result;
+}
+
+/**
  * @param {*} loaderContext
  * @param {String} content
+ * @returns {*}
+ */
+function findValue(loaderContext, content) {
+    let value;
+
+    if (isString(content)) {
+        value = content;
+    } else if (content instanceof Buffer) {
+        value = content.toString();
+    } else if (Array.isArray(loaderContext.inputValue)) {
+        value = loaderContext.inputValue[0];
+    } else if (isString(loaderContext.value)) {
+        value = loaderContext.value;
+    } else {
+        value = content;
+    }
+
+    return value;
+}
+
+/**
+ * @param {*} loaderContext
+ * @param {*} content
  * @param {Object} options
  * @returns {Object}
  */
 export default (loaderContext, content, options) => {
-    let translations;
+    const rawValue = findValue(loaderContext, content);
 
-    if (Array.isArray(loaderContext.inputValue)) {
-        translations = loaderContext.inputValue[0];
-    } else if (isString(loaderContext.value)) {
-        translations = JSON.parse(loaderContext.value);
-    } else if (MODULE_EXPORTS.test(content)) {
-        const match = content.match(MODULE_EXPORTS),
-            value = match.length >= 1 ? match[1].toString() : '{}';
+    let value;
 
-        translations = JSON.parse(parseString(value));
-    } else {
-        translations = content;
+    try {
+        value = convertValue(rawValue);
+    } catch(err) {
+        loaderContext.emitError(err);
     }
 
-    if (!isObject(translations)) {
-        translations = {};
-    }
+    const namespaces = interpolateNamespaces(loaderContext, value, options);
 
-    const namespaces = interpolateNamespaces(loaderContext, translations, options);
-
-    return mapKeys(translations, (value, key) => namespaces + key);
+    return mapKeys(value, (value, key) => namespaces + key);
 };

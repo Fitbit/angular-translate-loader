@@ -1,9 +1,10 @@
 export default wallaby => {
     return {
         files: [
+            'package.json',
             'src/**/*.js',
             'test/helpers/**/*.js',
-            'test/fixtures/**/*.json'
+            { pattern: 'test/fixtures/**/*.*', instrument: false }
         ],
         tests: [
             'test/**/*.spec.js'

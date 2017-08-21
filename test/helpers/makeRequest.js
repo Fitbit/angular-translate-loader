@@ -4,12 +4,13 @@ import {
 import loader from '../../src';
 
 export default (resourcePath, callback, options = {}, query = null) => {
-    readJson(resourcePath, (err, json) => {
+    readJson(resourcePath, (err, content) => {
         const context = {
             resourcePath,
             options,
+            emitError: () => {},
             cacheable: () => {},
-            query: query ? `?${JSON.stringify(query)}` : ''
+            query: `?${JSON.stringify(query)}`
         };
 
         ['inputValue', 'value'].forEach(x => {
@@ -18,14 +19,8 @@ export default (resourcePath, callback, options = {}, query = null) => {
             delete options[x];
         });
 
-        if (err) {
-            json = options.content;
-        }
-
         delete options.content;
 
-        const content = loader.call(context, json);
-
-        callback(context.value, content);
+        callback(loader.call(Object.freeze(context), content));
     });
 };

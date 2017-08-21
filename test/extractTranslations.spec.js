@@ -10,7 +10,7 @@ const TRANSLATIONS = {
 };
 
 describe('extractTranslations', () => {
-    it('should extract `translations` from `loaderContext.inputValue`', () => {
+    it('should extract `translations` from `loaderContext.inputValue[0]`', () => {
         expect(TRANSLATIONS).toEqual(extractTranslations({
             inputValue: [TRANSLATIONS]
         }, null, defaultOptions));
@@ -23,8 +23,8 @@ describe('extractTranslations', () => {
     });
 
     it('should extract `translations` from `content`', () => {
-        expect({}).toEqual(extractTranslations({}, 'module.exports', defaultOptions));
         expect(TRANSLATIONS).toEqual(extractTranslations({}, `module.exports = ${JSON.stringify(TRANSLATIONS)};`, defaultOptions));
+        expect(TRANSLATIONS).toEqual(extractTranslations({}, new Buffer(JSON.stringify(TRANSLATIONS)), defaultOptions));
     });
 
     it('should extract `translations` using `namespaces`', () => {
@@ -56,5 +56,19 @@ describe('extractTranslations', () => {
             namespaces,
             sep
         })));
+    });
+
+    it('should emit error in case of invalid `translations`', () => {
+        const loaderContext = {
+            emitError() {}
+        };
+
+        spyOn(loaderContext, 'emitError');
+
+        expect({}).toEqual(extractTranslations(loaderContext, false, defaultOptions));
+        expect({}).toEqual(extractTranslations(loaderContext, 1, defaultOptions));
+        expect({}).toEqual(extractTranslations(loaderContext, '', defaultOptions));
+
+        expect(loaderContext.emitError).toHaveBeenCalledTimes(3);
     });
 });
