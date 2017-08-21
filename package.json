@@ -65,7 +65,9 @@
     "semantic-release-conventional-commits": "^1.1.0",
     "webpack": "^3.5.5"
   },
-  "peerDependencies": {},
+  "peerDependencies": {
+    "angular": "1.x"
+  },
   "dependencies": {
     "babel-runtime": "^6.25.0",
     "loader-utils": "^1.1.0",
