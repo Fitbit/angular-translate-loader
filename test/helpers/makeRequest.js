@@ -19,10 +19,6 @@ export default (resourcePath, callback, options = {}, query = null) => {
             delete options[x];
         });
 
-        if (err) {
-            json = options.content;
-        }
-
         delete options.content;
 
         const content = loader.call(context, json);
