@@ -4,7 +4,7 @@ import {
 import loader from '../../src';
 
 export default (resourcePath, callback, options = {}, query = null) => {
-    readJson(resourcePath, (err, json) => {
+    readJson(resourcePath, (err, content) => {
         const context = {
             resourcePath,
             options,
@@ -21,8 +21,6 @@ export default (resourcePath, callback, options = {}, query = null) => {
 
         delete options.content;
 
-        const content = loader.call(context, json);
-
-        callback(content);
+        callback(loader.call(Object.freeze(context), content));
     });
 };
