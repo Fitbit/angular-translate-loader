@@ -8,8 +8,9 @@ export default (resourcePath, callback, options = {}, query = null) => {
         const context = {
             resourcePath,
             options,
+            emitError: () => {},
             cacheable: () => {},
-            query: query ? `?${JSON.stringify(query)}` : ''
+            query: `?${JSON.stringify(query)}`
         };
 
         ['inputValue', 'value'].forEach(x => {
@@ -26,6 +27,6 @@ export default (resourcePath, callback, options = {}, query = null) => {
 
         const content = loader.call(context, json);
 
-        callback(context.value, content);
+        callback(content);
     });
 };
