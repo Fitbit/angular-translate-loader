@@ -11,6 +11,7 @@
     "clean": "rm -rf ./dist ./coverage",
     "eslint": "eslint --ext=js,md ./ --cache",
     "build": "babel src --out-dir dist --source-maps --presets es2015",
+    "postinstall": "babel src --out-dir dist --source-maps --presets es2015",
     "test": "babel-node jasmine.js",
     "cover": "NODE_ENV=test nyc --reporter=lcov jasmine JASMINE_CONFIG_PATH=jasmine.json",
     "postcover": "nyc report",
