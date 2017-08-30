@@ -12,7 +12,7 @@ const DEFAULT_OPTIONS = {
         /[/\\][a-z]{2}[/\\]/ // './test/fixtures/en/foo.json'
     ],
     defaultLocale: 'en_US',
-    requireAngular: true
+    requireAngular: false
 };
 
 export default DEFAULT_OPTIONS;

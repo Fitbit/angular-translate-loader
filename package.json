@@ -1,5 +1,6 @@
 {
   "name": "angular-translate-loader",
+  "version": "1.1.1",
   "description": "`angular-translate` loader for webpack",
   "main": "dist/index.js",
   "files": [
@@ -9,10 +10,9 @@
   "scripts": {
     "clean": "rm -rf ./dist ./coverage",
     "eslint": "eslint --ext=js,md ./ --cache",
-    "build": "babel src --out-dir dist --source-maps",
+    "build": "babel src --out-dir dist --source-maps --presets es2015",
     "test": "babel-node jasmine.js",
     "cover": "NODE_ENV=test nyc --reporter=lcov jasmine JASMINE_CONFIG_PATH=jasmine.json",
-    "cover-windows": "SET NODE_ENV=test && nyc --reporter=lcov jasmine JASMINE_CONFIG_PATH=jasmine.json",
     "postcover": "nyc report",
     "codeclimate": "codeclimate-test-reporter < ./coverage/lcov.info",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
@@ -70,7 +70,7 @@
     "angular": "1.x"
   },
   "dependencies": {
-    "babel-runtime": "^6.25.0",
+    "babel-runtime": "^6.26.0",
     "loader-utils": "^1.1.0",
     "lodash": "^4.17.4"
   }
