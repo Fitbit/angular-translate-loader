@@ -12,6 +12,7 @@
     "build": "babel src --out-dir dist --source-maps",
     "test": "babel-node jasmine.js",
     "cover": "NODE_ENV=test nyc --reporter=lcov jasmine JASMINE_CONFIG_PATH=jasmine.json",
+    "cover-windows": "SET NODE_ENV=test && nyc --reporter=lcov jasmine JASMINE_CONFIG_PATH=jasmine.json",
     "postcover": "nyc report",
     "codeclimate": "codeclimate-test-reporter < ./coverage/lcov.info",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
