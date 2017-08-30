@@ -84,5 +84,6 @@ bower_components/
 *.log
 
 build/
+dist/
 ### JSDoc template
 docs/
