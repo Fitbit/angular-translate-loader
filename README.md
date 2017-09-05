@@ -165,3 +165,4 @@ module.exports = {
 | sep | `String` | `'/'` | Separator for `namespaces` and `module`. |
 | localeInterpolate | `RegExp` or `RegExp[]` or `String` or `String[]` | `[/_[a-z]{2}_[A-Z]{2}\./, /_[a-z]{2}\./, /[/\\][a-z]{2}_[A-Z]{2}[/\\]/, /[/\\][a-z]{2}[/\\]/]` | Uses to detect `locale` in `resourcePath`. |
 | defaultLocale | `String` | `'en_US'` | Uses `defaultLocale` if `localeInterpolate` fails to detect it. |
+| requireAngular | `Boolean` | `true` | Indicates whether to add `var angular = require("angular")` to generated code or not. Defaults to 'true'. |

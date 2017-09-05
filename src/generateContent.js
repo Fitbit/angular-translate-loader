@@ -4,10 +4,11 @@ import DEFAULT_OPTIONS from './defaultOptions';
  * @param {String} module
  * @param {String} locale
  * @param {Object} translations
+ * @param {Boolean} requireAngular
  * @return {String}
  */
-export default (module = DEFAULT_OPTIONS.module, locale = DEFAULT_OPTIONS.defaultLocale, translations = {}) => {
-    return `var angular = require("angular");
+export default (module = DEFAULT_OPTIONS.module, locale = DEFAULT_OPTIONS.defaultLocale, translations = {}, requireAngular = DEFAULT_OPTIONS.requireAngular) => {
+    return `var angular = ${requireAngular ? 'require("angular")' : 'window.angular'};
 var translations = ${JSON.stringify(translations, null, '\t')};
 var module;
 try {
