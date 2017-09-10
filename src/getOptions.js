@@ -49,6 +49,9 @@ export default loaderContext => {
     const options = getOptions(loaderContext) || {};
 
     options.localeInterpolate = getLocaleInterpolate(options);
+    if (options.requireAngular === true || options.requireAngular === false) {
+        DEFAULT_OPTIONS.requireAngular = options.requireAngular;
+    }
 
     return defaults(options, DEFAULT_OPTIONS);
 };
