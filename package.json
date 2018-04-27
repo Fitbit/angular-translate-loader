@@ -2,25 +2,19 @@
   "name": "angular-translate-loader",
   "description": "`angular-translate` loader for webpack",
   "main": "dist/index.js",
-  "files": [
-    "dist/",
-    "src/"
-  ],
+  "files": ["dist/", "src/"],
   "scripts": {
     "clean": "rm -rf ./dist ./coverage",
     "eslint": "eslint --ext=js,md ./ --cache",
     "build": "babel src --out-dir dist --source-maps",
     "test": "babel-node jasmine.js",
-    "cover": "cross-env NODE_ENV=test nyc --reporter=lcov jasmine JASMINE_CONFIG_PATH=jasmine.json",
+    "cover":
+      "cross-env NODE_ENV=test nyc --reporter=lcov jasmine JASMINE_CONFIG_PATH=jasmine.json",
     "postcover": "nyc report"
   },
   "nyc": {
-    "include": [
-      "src/*.js"
-    ],
-    "require": [
-      "babel-register"
-    ],
+    "include": ["src/*.js"],
+    "require": ["babel-register"],
     "sourceMap": false,
     "instrument": false
   },
@@ -30,14 +24,7 @@
     "type": "git",
     "url": "https://github.com/Fitbit/angular-translate-loader.git"
   },
-  "release": {
-    "analyzeCommits": "semantic-release-conventional-commits"
-  },
-  "keywords": [
-    "webpack",
-    "angular",
-    "translate"
-  ],
+  "keywords": ["webpack", "angular", "translate"],
   "bugs": {
     "url": "https://github.com/Fitbit/angular-translate-loader/issues"
   },
