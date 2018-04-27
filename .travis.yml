@@ -19,8 +19,8 @@ branches:
   except:
     - gh-pages
 before_install:
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-${CC_VERSION}-darwin-amd64 > ./cc-test-reporter; fi
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-${CC_VERSION}-linux-amd64 > ./cc-test-reporter; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-${CC_VERSION}-darwin-amd64 > ./cc-test-reporter; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-${CC_VERSION}-linux-amd64 > ./cc-test-reporter; fi
   - chmod +x ./cc-test-reporter
 install:
   - yarn install
