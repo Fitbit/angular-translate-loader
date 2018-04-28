@@ -2,27 +2,19 @@
   "name": "angular-translate-loader",
   "description": "`angular-translate` loader for webpack",
   "main": "dist/index.js",
-  "files": [
-    "dist/",
-    "src/"
-  ],
+  "files": ["dist/", "src/"],
   "scripts": {
     "clean": "rm -rf ./dist ./coverage",
     "eslint": "eslint --ext=js,md ./ --cache",
     "build": "babel src --out-dir dist --source-maps",
     "test": "babel-node jasmine.js",
-    "cover": "cross-env NODE_ENV=test nyc --reporter=lcov jasmine JASMINE_CONFIG_PATH=jasmine.json",
-    "postcover": "nyc report",
-    "codeclimate": "codeclimate-test-reporter < ./coverage/lcov.info",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+    "cover":
+      "cross-env NODE_ENV=test nyc --reporter=lcov jasmine JASMINE_CONFIG_PATH=jasmine.json",
+    "postcover": "nyc report"
   },
   "nyc": {
-    "include": [
-      "src/*.js"
-    ],
-    "require": [
-      "babel-register"
-    ],
+    "include": ["src/*.js"],
+    "require": ["babel-register"],
     "sourceMap": false,
     "instrument": false
   },
@@ -32,14 +24,7 @@
     "type": "git",
     "url": "https://github.com/Fitbit/angular-translate-loader.git"
   },
-  "release": {
-    "analyzeCommits": "semantic-release-conventional-commits"
-  },
-  "keywords": [
-    "webpack",
-    "angular",
-    "translate"
-  ],
+  "keywords": ["webpack", "angular", "translate"],
   "bugs": {
     "url": "https://github.com/Fitbit/angular-translate-loader/issues"
   },
@@ -52,7 +37,6 @@
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.6.0",
     "babel-register": "^6.24.1",
-    "codeclimate-test-reporter": "^0.5.0",
     "cross-env": "^5.0.5",
     "eslint": "^4.3.0",
     "eslint-plugin-babel": "^4.1.2",
@@ -62,8 +46,8 @@
     "jasmine-spec-reporter": "^4.1.1",
     "memory-fs": "^0.4.1",
     "nyc": "^11.1.0",
-    "semantic-release": "^7.0.1",
-    "semantic-release-conventional-commits": "^1.1.0",
+    "semantic-release": "^15.1.7",
+    "travis-deploy-once": "^4.4.1",
     "webpack": "^3.5.5"
   },
   "peerDependencies": {
