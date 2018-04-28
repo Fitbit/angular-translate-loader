@@ -143,6 +143,7 @@ If you want to add some global options you can do that easily:
 module.exports = {
     module: {
         rules: [{
+            type: 'javascript/auto',
             test: /\.json$/,
             loader: 'angular-translate-loader',
             options: {
