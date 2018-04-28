@@ -60,12 +60,13 @@ describe('loader', () => {
         }, OPTIONS, QUERY);
     });
 
-    it('should compile successfully by `webpack', done => {
+    it('should compile successfully by `webpack`', done => {
         const OUTPUT_PATH = join(__dirname, 'out'),
             OUTPUT_FILENAME = 'bundle.js',
             ENCODING = 'utf-8';
 
         const compiler = webpack({
+            mode: 'development',
             context: __dirname,
             output: {
                 filename: OUTPUT_FILENAME,
@@ -87,7 +88,9 @@ describe('loader', () => {
             },
             module: {
                 rules: [{
+                    type: 'javascript/auto',
                     test: /\.json$/,
+                    enforce: 'pre',
                     loader: LOADER,
                     options: defaultOptions
                 }]

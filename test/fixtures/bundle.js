@@ -44,6 +44,11 @@
 /******/ 		}
 /******/ 	};
 /******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
 /******/ 	// getDefaultExport function for compatibility with non-harmony modules
 /******/ 	__webpack_require__.n = function(module) {
 /******/ 		var getter = module && module.__esModule ?
@@ -59,63 +64,39 @@
 /******/ 	// __webpack_public_path__
 /******/ 	__webpack_require__.p = "";
 /******/
+/******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
+/******/ ({
+
+/***/ "./fixtures/foo.json":
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("var angular = __webpack_require__(\"angular\");\nvar translations = {\n\t\"foo1\": \"one\",\n\t\"foo2\": \"two\"\n};\nvar module;\ntry {\n\tmodule = angular.module(\"translations\");\n} catch(err) {\n\tmodule = angular.module(\"translations\", [\"pascalprecht.translate\"]);\n}\nmodule.config([\"$translateProvider\", function($translateProvider) {\n\t$translateProvider.translations(\"en_US\", translations);\n}]);\nmodule.exports = translations;\n\n//# sourceURL=webpack:///./fixtures/foo.json?");
+
+/***/ }),
+
+/***/ "./fixtures/foo_de_DE.json":
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("var angular = __webpack_require__(\"angular\");\nvar translations = {\n\t\"foo1\": \"ein\",\n\t\"foo2\": \"zwei\"\n};\nvar module;\ntry {\n\tmodule = angular.module(\"translations\");\n} catch(err) {\n\tmodule = angular.module(\"translations\", [\"pascalprecht.translate\"]);\n}\nmodule.config([\"$translateProvider\", function($translateProvider) {\n\t$translateProvider.translations(\"de_DE\", translations);\n}]);\nmodule.exports = translations;\n\n//# sourceURL=webpack:///./fixtures/foo_de_DE.json?");
+
+/***/ }),
+
+/***/ 0:
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("__webpack_require__(\"./fixtures/foo.json\");\nmodule.exports = __webpack_require__(\"./fixtures/foo_de_DE.json\");\n\n\n//# sourceURL=webpack:///multi_foo.json_foo_de_DE.json?");
+
+/***/ }),
+
+/***/ "angular":
 /***/ (function(module, exports) {
 
-module.exports = angular;
-
-/***/ }),
-/* 1 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(2);
-module.exports = __webpack_require__(3);
-
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var angular = __webpack_require__(0);
-var translations = {
-	"foo1": "one",
-	"foo2": "two"
-};
-var module;
-try {
-	module = angular.module("translations");
-} catch(err) {
-	module = angular.module("translations", ["pascalprecht.translate"]);
-}
-module.config(["$translateProvider", function($translateProvider) {
-	$translateProvider.translations("en_US", translations);
-}]);
-module.exports = translations;
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var angular = __webpack_require__(0);
-var translations = {
-	"foo1": "ein",
-	"foo2": "zwei"
-};
-var module;
-try {
-	module = angular.module("translations");
-} catch(err) {
-	module = angular.module("translations", ["pascalprecht.translate"]);
-}
-module.config(["$translateProvider", function($translateProvider) {
-	$translateProvider.translations("de_DE", translations);
-}]);
-module.exports = translations;
+eval("module.exports = angular;\n\n//# sourceURL=webpack:///external_%22angular%22?");
 
 /***/ })
-/******/ ]);
+
+/******/ });

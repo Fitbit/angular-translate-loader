@@ -1,7 +1,8 @@
 import {
     isObject,
     escapeRegExp,
-    trim
+    trim,
+    get
 } from 'lodash';
 import {
     sep,
@@ -34,7 +35,7 @@ const INTERPOLATIONS = {
  * @returns {String}
  */
 export default (value, loaderContext, content, options) => {
-    const context = options.context || loaderContext.options.context || './';
+    const context = get(options, 'context') || get(loaderContext, 'options.context') || './';
 
     value = interpolateName(loaderContext, value, {
         context: context,

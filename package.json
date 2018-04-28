@@ -2,19 +2,25 @@
   "name": "angular-translate-loader",
   "description": "`angular-translate` loader for webpack",
   "main": "dist/index.js",
-  "files": ["dist/", "src/"],
+  "files": [
+    "dist/",
+    "src/"
+  ],
   "scripts": {
     "clean": "rm -rf ./dist ./coverage",
     "lint": "eslint --ext=js,md ./ --cache",
     "build": "babel src --out-dir dist --source-maps",
     "test": "babel-node jasmine.js",
-    "cover":
-      "cross-env NODE_ENV=test nyc --reporter=lcov jasmine JASMINE_CONFIG_PATH=jasmine.json",
+    "cover": "cross-env NODE_ENV=test nyc --reporter=lcov jasmine JASMINE_CONFIG_PATH=jasmine.json",
     "postcover": "nyc report"
   },
   "nyc": {
-    "include": ["src/*.js"],
-    "require": ["babel-register"],
+    "include": [
+      "src/*.js"
+    ],
+    "require": [
+      "babel-register"
+    ],
     "sourceMap": false,
     "instrument": false
   },
@@ -24,38 +30,46 @@
     "type": "git",
     "url": "https://github.com/Fitbit/angular-translate-loader.git"
   },
-  "keywords": ["webpack", "angular", "translate"],
+  "keywords": [
+    "webpack",
+    "angular",
+    "translate"
+  ],
   "bugs": {
     "url": "https://github.com/Fitbit/angular-translate-loader/issues"
   },
   "homepage": "https://github.com/Fitbit/angular-translate-loader",
   "devDependencies": {
-    "babel-cli": "^6.24.1",
-    "babel-eslint": "^7.2.3",
-    "babel-loader": "^7.1.1",
-    "babel-plugin-istanbul": "^4.1.4",
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "^8.2.3",
+    "babel-loader": "^7.1.4",
+    "babel-plugin-istanbul": "^4.1.6",
     "babel-plugin-transform-runtime": "^6.23.0",
-    "babel-preset-env": "^1.6.0",
-    "babel-register": "^6.24.1",
-    "cross-env": "^5.0.5",
-    "eslint": "^4.3.0",
-    "eslint-plugin-babel": "^4.1.2",
+    "babel-preset-env": "^1.6.1",
+    "babel-register": "^6.26.0",
+    "cross-env": "^5.1.4",
+    "eslint": "^4.19.1",
+    "eslint-plugin-babel": "^5.1.0",
     "eslint-plugin-markdown": "^1.0.0-beta.6",
-    "fs-extra": "^4.0.0",
-    "jasmine": "^2.7.0",
-    "jasmine-spec-reporter": "^4.1.1",
+    "fs-extra": "^5.0.0",
+    "jasmine": "^3.1.0",
+    "jasmine-spec-reporter": "^4.2.1",
+    "json-loader": "^0.5.7",
     "memory-fs": "^0.4.1",
-    "nyc": "^11.1.0",
+    "nyc": "^11.7.1",
     "semantic-release": "^15.1.7",
     "travis-deploy-once": "^4.4.1",
-    "webpack": "^3.5.5"
+    "webpack": "^4.6.0"
   },
   "peerDependencies": {
     "angular": "1.x"
   },
   "dependencies": {
-    "babel-runtime": "^6.25.0",
+    "babel-runtime": "^6.26.0",
     "loader-utils": "^1.1.0",
-    "lodash": "^4.17.4"
+    "lodash": "^4.17.10"
+  },
+  "engines": {
+    "node": ">=8.0.0"
   }
 }
