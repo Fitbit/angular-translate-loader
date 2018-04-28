@@ -28,7 +28,7 @@ before_script:
   - ./cc-test-reporter before-build
 script:
   - yarn run clean
-  - yarn run eslint
+  - yarn run lint
   - yarn run cover
   - yarn run build
 after_script:
