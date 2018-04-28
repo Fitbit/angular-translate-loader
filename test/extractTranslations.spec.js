@@ -24,7 +24,7 @@ describe('extractTranslations', () => {
 
     it('should extract `translations` from `content`', () => {
         expect(TRANSLATIONS).toEqual(extractTranslations({}, `module.exports = ${JSON.stringify(TRANSLATIONS)};`, defaultOptions));
-        expect(TRANSLATIONS).toEqual(extractTranslations({}, new Buffer(JSON.stringify(TRANSLATIONS)), defaultOptions));
+        expect(TRANSLATIONS).toEqual(extractTranslations({}, Buffer.from(JSON.stringify(TRANSLATIONS)), defaultOptions));
     });
 
     it('should extract `translations` using `namespaces`', () => {
