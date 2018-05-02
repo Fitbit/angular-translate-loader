@@ -18,5 +18,5 @@ export default function(content) {
         translations = extractTranslations(this, content, options),
         module = interpolateModule(this, translations, options);
 
-    return generateContent(module, locale, translations);
+    return generateContent(module, locale, translations, options.requireAngular);
 }
