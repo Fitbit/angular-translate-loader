@@ -37,6 +37,7 @@ jobs:
   fast_finish: true
   include:
     - stage: release
+      node_js: lts/*
       deploy:
         skip_cleanup: true
         provider: script
