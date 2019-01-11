@@ -57,7 +57,7 @@
     "json-loader": "^0.5.7",
     "memory-fs": "^0.4.1",
     "nyc": "^11.7.1",
-    "semantic-release": "^15.1.7",
+    "semantic-release": "^15.13.3",
     "travis-deploy-once": "^4.4.1",
     "webpack": "^4.6.0"
   },
